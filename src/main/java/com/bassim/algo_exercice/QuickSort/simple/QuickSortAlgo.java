@@ -22,13 +22,13 @@ public class QuickSortAlgo {
                         .map(Long::parseLong)
                         .toList();
         List<Long> list = new ArrayList<>(longList);
-        QuickSort(list, 0, list.size() - 1);
+        quickSort(list, 0, list.size() - 1);
         list.forEach(System.out::println);
         System.out.println("---------");
         System.out.println(totalComparisons);
     }
 
-    private static void QuickSort(List<Long> arr, int left, int right) {
+    private static void quickSort(List<Long> arr, int left, int right) {
         if (left >= right) return;
         totalComparisons += (right - left);
 
@@ -36,8 +36,8 @@ public class QuickSortAlgo {
         swap(arr, left, pivotIndex); // mettre le pivot en première position (comme l'attend la partition)
         int partitionIndex = partitionAndGetLimitOut(arr, left, right);
 
-        QuickSort(arr, left, partitionIndex - 1);
-        QuickSort(arr, partitionIndex + 1, right);
+        quickSort(arr, left, partitionIndex - 1);
+        quickSort(arr, partitionIndex + 1, right);
     }
 
     private static int partitionAndGetLimitOut(List<Long> arr, int left, int right) {
