@@ -29,7 +29,7 @@ public class RandomSelection {
             pivotPosition = select(list, pivotPosition + 1, right, i - k);
             // le i represente la position générale si on enlève le k, qui est la position
             // du pivot dans le tableau actuel
-        }else if (k > i){
+        }else{
             pivotPosition = select(list, left, pivotPosition - 1, i);
         }
 
