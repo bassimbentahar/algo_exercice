@@ -8,8 +8,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.summingLong;
+import static java.util.stream.Collectors.*;
 
 public class Collect {
     public static void main(String[] args) {
@@ -23,6 +22,33 @@ public class Collect {
                                 summingLong(String::length) // somme des longueurs
                         ));
 
+
+/*        List.of(new A("aa"), new A("bb"), new A("aa"), new A("aa"))
+                .stream()
+                .collect(groupingBy(A::getTitle));*/
+        /*
+        * {
+            aa=[A{aa}, A{aa}, A{aa}],
+            bb=[A{bb}]
+        }
+        *
+        * */
+
+        List.of(new A("aa",2), new A("bb",3), new A("aa",2), new A("aa",2))
+                .stream()
+                .collect(groupingBy(A::getTitle, counting()));
+        // {aa=3, bb=1}
+        List.of(
+                        new A("aa", 2),
+                        new A("bb", 3),
+                        new A("aa", 2),
+                        new A("aa", 2)
+                ).stream()
+                .collect(Collectors.groupingBy(
+                        A::getTitle,                      // clé du regroupement
+                        Collectors.summingInt(A::getPrice) // somme des prix par clé
+                ));
+        //{aa=6, bb=3}
         System.out.println(matchingCharactersMap);
         //-------------  custom collector
 
@@ -103,12 +129,35 @@ public class Collect {
 
     }
 
-    private static String toStringCustom(List<String> list){
+    private static String toStringCustom(List<String> list) {
         return list.stream().collect(Collector.of(
-                ()-> new StringJoiner("|"),
+                () -> new StringJoiner("|"),
                 (j, r) -> j.add(r),
                 StringJoiner::merge,
                 StringJoiner::toString
         ));
+    }
+
+    static class A {
+        String title;
+        Integer price;
+
+        public A(String title, Integer price) {
+            this.title = title;
+            this.price = price;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public Integer getPrice() {
+            return price;
+        }
+
+        @Override
+        public String toString() {
+            return "A{" + title + "}";
+        }
     }
 }

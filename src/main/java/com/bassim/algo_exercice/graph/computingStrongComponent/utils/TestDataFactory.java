@@ -1,4 +1,6 @@
-package com.bassim.algo_exercice.search.searchStreamSpliterator.utils;
+package com.bassim.algo_exercice.graph.computingStrongComponent.utils;
+
+import com.bassim.algo_exercice.search.searchStreamSpliterator.utils.SharedString;
 
 import java.net.URI;
 import java.nio.file.Files;

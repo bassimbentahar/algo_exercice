@@ -77,7 +77,7 @@ public class GraphBFSPath {
         graph.addEdge("B", "D");
         graph.addEdge("C", "E");
 
-        List<Node> path = graph.bfsPath(new Node("S",0), new Node("E", 0));
+        List<Node> path = graph.bfsPath(new Node("S",0), new Node("E", null));
         System.out.println("Chemin le plus court de S à E : " + path);
     }
 

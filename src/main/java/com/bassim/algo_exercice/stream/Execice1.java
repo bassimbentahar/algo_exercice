@@ -1,7 +1,6 @@
 package com.bassim.algo_exercice.stream;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -37,11 +36,6 @@ public class Execice1 {
         Stream.of(1, 2, 5,4,7,9,0,3)
                 .sorted(Comparator.comparingInt(a -> a))
                 .forEach(System.out::println);
-
-
-
-
-
     }
 
     private static List<Integer> extractDigits(String input) {
@@ -49,7 +43,6 @@ public class Execice1 {
                 .filter(Character::isDigit)
                 .map(Character::getNumericValue)
                 .boxed().collect(toList());
-
     }
 
     private static List<Integer> extractDigitsGrouped(String input) {

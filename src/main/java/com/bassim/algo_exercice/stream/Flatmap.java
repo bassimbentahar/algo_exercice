@@ -14,10 +14,6 @@ public class Flatmap {
         lists.stream()
                 .map(List::stream)
                 .distinct();
-        for(Spliterator s=lists.spliterator();
-        s.tryAdvance(System.out::println););
-
-
-
+        for(Spliterator s=lists.spliterator(); s.tryAdvance(System.out::println););
     }
 }
