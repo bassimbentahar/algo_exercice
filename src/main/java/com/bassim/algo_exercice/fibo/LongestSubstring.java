@@ -1,7 +1,9 @@
 package com.bassim.algo_exercice.fibo;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 // sliding window avec HashMap
 public class LongestSubstring {
@@ -28,6 +30,25 @@ public class LongestSubstring {
             lastDoublon.put(letter, i);
 
             max = Math.max(i - start + 1, max);
+        }
+        return max;
+    }
+
+    public int lengthOfLongestSubstring2(String s) {
+        if (s.isEmpty()) return 0;
+        if (s.length() == 1) return 1;
+        Set<Character> existingChar=new HashSet<>();
+        int max=0;
+        int start = 0;
+        for (int end = start; end < s.length(); end++) {
+
+            while (existingChar.contains(s.charAt(end))){
+                existingChar.remove(s.charAt(start));
+                start++;
+            }
+            existingChar.add(s.charAt(end));
+
+            max=Math.max(max, end-start+1);
         }
         return max;
     }

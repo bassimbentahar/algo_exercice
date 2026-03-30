@@ -25,7 +25,7 @@ public class IntegerToRoman {
 
 
     public static void main(String[] args) {
-        System.out.println(intToRoman(49));
+        System.out.println(intToRoman4(3749));
     }
 
     public static String intToRoman(int num) {
@@ -73,8 +73,8 @@ public class IntegerToRoman {
     public static String intToRoman3(int num) {
         if (num < 1 || num > 3999) return "N'existe pas";
 
-        int[] values =    {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-        String[] symbols ={"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
         StringBuilder sb = new StringBuilder();
 
@@ -85,6 +85,19 @@ public class IntegerToRoman {
             }
         }
 
+        return sb.toString();
+    }
+
+    public static String intToRoman4(int num) {
+        if (num < 1 || num > 3999) return "N'existe pas";
+
+        StringBuilder sb = new StringBuilder();
+        while (num > 0) {
+            int value = romans.floorKey(num);
+            System.out.println(value);
+            sb.append(romans.get(value));
+            num -=value;
+        }
         return sb.toString();
     }
 }

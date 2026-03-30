@@ -29,4 +29,21 @@ public class RomanToInteger {
         }
         return res;
     }
+
+    public static int romanToInt2(String s) {
+        int res = 0;
+        for (int i = 0; i < s.length(); i++) {
+
+            int value = romans.get(s.charAt(i));
+
+            if (i + 1 < s.length() && value< romans.get(s.charAt(i+1))){
+                res-=value;
+            }else{
+                res+=value;
+            }
+        }
+        return res;
+    }
 }
+
+    }

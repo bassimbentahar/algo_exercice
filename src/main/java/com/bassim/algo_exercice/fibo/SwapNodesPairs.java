@@ -11,7 +11,6 @@ public class SwapNodesPairs {
     }
 
     public ListNode swapPairs(ListNode head) {
-        if (head == null) return null;
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode current = dummy;
@@ -20,9 +19,9 @@ public class SwapNodesPairs {
             ListNode first = current.next;
             ListNode second = current.next.next;
 
-            current.next = second;
             first.next = second.next;
             second.next = first;
+            current.next = second;
 
             current = first;
         }

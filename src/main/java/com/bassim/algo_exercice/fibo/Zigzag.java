@@ -1,13 +1,14 @@
 package com.bassim.algo_exercice.fibo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Zigzag {
     public static void main(String[] args) {
-        String s = "PAYPALISHIRING";
-        int nbRows = 3;
-        System.out.println(STR."result \{zigZag2(s, nbRows)}");
+        String s = "AB";
+        int nbRows = 1;
+        System.out.println(STR."result \{zigzag3(s, nbRows)}");
     }
 
     private static String zigZag(String s, int nbRows) {
@@ -59,11 +60,36 @@ public class Zigzag {
             i++;
         }
         StringBuilder sb = new StringBuilder();
-        for(StringBuilder row : list){
+        for (StringBuilder row : list) {
             sb.append(row);
         }
 
         return sb.toString();
+    }
+
+    public static String zigzag3(String s, int numRows) {
+        if (numRows <= 1) return s;
+        StringBuilder[] list = new StringBuilder[numRows];
+        for (int i = 0; i < numRows; i++) list[i] = (new StringBuilder());
+
+        int i = 0;
+        int whereIPut = 0;
+        int direction = 1;
+        while (i < s.length()) {
+            list[whereIPut].append(s.charAt(i));
+            if (whereIPut == numRows - 1) {
+                direction = -1;
+            } else if (whereIPut == 0) {
+                direction = 1;
+            }
+            whereIPut += direction;
+            i++;
+        }
+        StringBuilder result = new StringBuilder();
+        for (StringBuilder sb : list) {
+            result.append(sb.toString());
+        }
+        return result.toString();
     }
 
     private static int incOrDec(int n, boolean upDown) {
