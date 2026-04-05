@@ -53,6 +53,34 @@ public class LongestPalindromicSubstring {
             int len2 = expandFCenter(i, i + 1, s);
 
             int len = Math.max(len1, len2);
+
+            /**
+             * Calcul des bornes du palindrome à partir de son centre et de sa longueur.
+             *
+             * - i représente le centre du palindrome
+             * - len est la longueur du palindrome trouvé (pair ou impair)
+             *
+             * start :
+             * - On remonte vers la gauche à partir du centre
+             * - (len - 1) / 2 permet de gérer correctement les cas pairs et impairs
+             *
+             * end :
+             * - On avance vers la droite à partir du centre
+             * - len / 2 complète la partie droite du palindrome
+             *
+             * Pourquoi ça marche :
+             * - Cas impair (ex: "aba", len = 3, i = 1)
+             *   start = 1 - 1 = 0
+             *   end   = 1 + 1 = 2
+             *
+             * - Cas pair (ex: "abba", len = 4, i = 1)
+             *   start = 1 - 1 = 0
+             *   end   = 1 + 2 = 3
+             *
+             * Conclusion :
+             * Cette formule fonctionne pour les deux cas (pair et impair)
+             * sans avoir besoin de les distinguer explicitement.
+             */
             int start = i - (len - 1) / 2;
             int end = i + len / 2;
 
@@ -66,6 +94,30 @@ public class LongestPalindromicSubstring {
         return currentMax;
     }
 
+    /**
+     * Cette méthode étend un palindrome autour d’un centre donné.
+     *
+     * Elle prend deux indices (left, right) qui représentent le centre :
+     * - (i, i)   -> palindrome impair (ex: "aba")
+     * - (i, i+1) -> palindrome pair   (ex: "abba")
+     *
+     * Fonctionnement :
+     * - Tant que les caractères à gauche et à droite sont égaux,
+     *   on continue d’étendre le palindrome.
+     * - Dès que ce n’est plus valide, on s’arrête.
+     *
+     * Important :
+     * - À la sortie de la boucle, left et right sont allés trop loin,
+     *   donc on calcule la longueur réelle avec : right - left - 1
+     *
+     * Cette méthode fait donc deux choses :
+     * 1) Elle agrandit le palindrome au maximum
+     * 2) Elle retourne sa longueur
+     *
+     * Remarque :
+     * On ne sait pas à l’avance si le palindrome pair ou impair est le plus long,
+     * donc dans la méthode appelante on teste les deux cas et on prend le maximum.
+     */
     private int expandFCenter(int left, int right, String s) {
         while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
             right++;
