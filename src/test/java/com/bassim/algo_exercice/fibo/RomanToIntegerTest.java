@@ -1,6 +1,8 @@
 package com.bassim.algo_exercice.fibo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.bassim.algo_exercice.exo.RomanToInteger;
 import org.junit.jupiter.api.Test;
 
 class RomanToIntegerTest {
